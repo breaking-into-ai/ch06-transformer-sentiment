@@ -5,8 +5,8 @@ import torch.nn.functional as F
 
 torch.manual_seed(42)
 
-# ---------- 6.1 A simple feed-forward network (CineMatchNet) ----------
-class CineMatchNet(nn.Module):
+# ---------- 6.1 A simple feed-forward network (FlickSageNet) ----------
+class FlickSageNet(nn.Module):
     def __init__(self, n_features):
         super().__init__()
         self.network = nn.Sequential(
@@ -19,9 +19,9 @@ class CineMatchNet(nn.Module):
     def forward(self, x):
         return self.network(x)
 
-model = CineMatchNet(n_features=8)
+model = FlickSageNet(n_features=8)
 n_params = sum(p.numel() for p in model.parameters())
-print(f"CineMatchNet parameters: {n_params}")  # 8*64+64 + 64*32+32 + 32*1+1 = 2,689
+print(f"FlickSageNet parameters: {n_params}")  # 8*64+64 + 64*32+32 + 32*1+1 = 2,689
 
 # ---------- 6.4 Self-attention, step by step ----------
 seq_length, d_model = 5, 8

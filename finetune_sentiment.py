@@ -12,7 +12,7 @@ def tokenize(examples):
 tokenized = dataset.map(tokenize, batched=True)
 model = AutoModelForSequenceClassification.from_pretrained("distilbert-base-uncased", num_labels=2)
 args = TrainingArguments(
-    output_dir="./cinematch-sentiment",
+    output_dir="./flicksage-sentiment",
     num_train_epochs=3,
     per_device_train_batch_size=16,
     per_device_eval_batch_size=64,
@@ -28,7 +28,7 @@ trainer.train()  # typically 93%+ accuracy in under 30 minutes on a single GPU
 
 # Use it:
 from transformers import pipeline
-classifier = pipeline("sentiment-analysis", model="./cinematch-sentiment")
+classifier = pipeline("sentiment-analysis", model="./flicksage-sentiment")
 for review in ["This movie was an absolute masterpiece.",
                "Worst two hours of my life."]:
     result = classifier(review)[0]
